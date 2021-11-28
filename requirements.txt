@@ -8,3 +8,5 @@ opencv-python
 opencv-contrib-python
 torch==1.7.0
 tensorflow==2.5.0
+torchvision
+skimage
