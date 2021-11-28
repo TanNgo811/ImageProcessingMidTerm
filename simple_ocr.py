@@ -14,3 +14,5 @@ class HoadonOCR:
     # TODO: implement find label
     def find_label(self, img):
         return self.labels[random.randint(0, 3)]
+        # return 'highlands'
+
