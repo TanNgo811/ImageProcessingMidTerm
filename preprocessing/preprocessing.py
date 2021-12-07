@@ -34,7 +34,7 @@ def get_receipt_contour(contours):
         if len(approx) == 4:
             return approx
 
-def contour_to_rect(contour):
+def contour_to_rect(contour, resize_ratio):
     pts = contour.reshape(4, 2)
     rect = np.zeros((4, 2), dtype = "float32")
     # top-left point has the smallest sum
@@ -133,7 +133,7 @@ def preprocessing(image, resize_ratio):
     image_with_receipt_contour = cv2.drawContours(image.copy(), [receipt_contour], -1, (0, 255, 0), 2)
     plot_rgb(image_with_receipt_contour)
 
-    scanned = wrap_perspective(original.copy(), contour_to_rect(receipt_contour))
+    scanned = wrap_perspective(original.copy(), contour_to_rect(receipt_contour, resize_ratio))
     # plt.figure(figsize=(16, 10))
     # plt.imshow(scanned)
 
