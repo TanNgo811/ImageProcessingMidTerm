@@ -29,7 +29,6 @@ def get_receipt_contour(contours):
     # loop over the contours
     for c in contours:
         approx = approximate_contour(c)
-        approx
         # if our approximated contour has four points, we can assume it is receipt's rectangle
         if len(approx) == 4:
             return approx
@@ -98,8 +97,8 @@ def preprocessing(image, resize_ratio):
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (9, 9))
     dilated = cv2.dilate(blurred, kernel)
     erosion = cv2.erode(blurred, kernel, iterations=1)
-    plot_gray(dilated)
-    plot_gray(erosion)
+    # plot_gray(dilated)
+    # plot_gray(erosion)
 
     # Detect white region
     rectKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (10, 10))
@@ -121,25 +120,25 @@ def preprocessing(image, resize_ratio):
     # Detect all contours in Canny-edged image
     contours, hierarchy = cv2.findContours(blackAndWhiteImage, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     image_with_contours = cv2.drawContours(image.copy(), contours, -1, (0, 255, 0), 3)
-    plot_rgb(image_with_contours)
+    # plot_rgb(image_with_contours)
 
     # Get 10 largest contours
     largest_contours = sorted(contours, key=cv2.contourArea, reverse=True)[:10]
     image_with_largest_contours = cv2.drawContours(image.copy(), largest_contours, -1, (0, 255, 0), 3)
-    plot_rgb(image_with_largest_contours)
+    # plot_rgb(image_with_largest_contours)
 
     receipt_contour = get_receipt_contour(largest_contours)
 
     image_with_receipt_contour = cv2.drawContours(image.copy(), [receipt_contour], -1, (0, 255, 0), 2)
-    plot_rgb(image_with_receipt_contour)
+    # plot_rgb(image_with_receipt_contour)
 
     scanned = wrap_perspective(original.copy(), contour_to_rect(receipt_contour, resize_ratio))
     # plt.figure(figsize=(16, 10))
     # plt.imshow(scanned)
 
-    result = bw_scanner(scanned)
+    # result = bw_scanner(scanned)
 
-    return result
+    return scanned
 
 
 if __name__ == '__main__':

@@ -5,11 +5,6 @@ from PIL import Image
 from ocr import ocr
 import re
 
-def data_extraction_file(image_file):
-
-    return
-
-
 def single_pic_proc(image_file):
     image = np.array(Image.open(image_file).convert('RGB'))
     result, image_framed = ocr(image)
