@@ -9,9 +9,9 @@ def data_extraction(input_data):
 
     phuclong_regex = '(P|p)(|.)(h|H)(|.)(u|U)(|.)(C|c)(|.)(L|l)(|.)(O|o)(|.)(n|N)(|.)(g|G)'
 
-    starbucks_regex = 'asd'
+    starbucks_regex = '(S|s)(|.)(t|T)(|.)(A|a)(|.)(r|R)(|.)(B|b)(|.)(u|U)(|.)(C|c)(|.)(K|k)(|.)(s|S)'
 
-    starbucks_regex_2 = 'asd'
+    starbucks_regex_2 = '(W|w)(|.{1,2})(i|I)(|.{1,2})(F|f)(|.{1,2})(i|I)'
 
     circlek_regex = '((C|c)(|.)(I|i)(|.)(R|r)(|.)(C|c)(|.)(L|l)(|.)(E|e)(|.)(k|K))'
 

@@ -4,7 +4,7 @@ from ocr import ocr
 from data_extraction import data_extraction
 
 if __name__ == '__main__':
-    file_name = './test_images/img10 (2).jpeg'
+    file_name = './test_images/img4.jpeg'
     image = cv2.imread(file_name)
 
     # resize_ratio = 500 / image.shape[0]
@@ -23,6 +23,7 @@ if __name__ == '__main__':
 
     for key in result:
         data = data + result[key][1] + ' '
+        print(result[key][1])
 
     print(data_extraction.data_extraction(data))
 
