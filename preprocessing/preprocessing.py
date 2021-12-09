@@ -114,7 +114,8 @@ def preprocessing(image, resize_ratio):
     (thresh, blackAndWhiteImage) = cv2.threshold(closing, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     # plot_gray(blackAndWhiteImage)
 
-    edged = cv2.Canny(blackAndWhiteImage, 100, 200, apertureSize=3)
+    # test Canny
+    # edged = cv2.Canny(blackAndWhiteImage, 100, 200, apertureSize=3)
     # plot_gray(edged)
 
     # Detect all contours in Canny-edged image

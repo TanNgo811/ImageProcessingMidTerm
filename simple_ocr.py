@@ -16,9 +16,6 @@ class HoadonOCR:
 
     # TODO: implement find label
     def find_label(self, img):
-        # return self.labels[random.randint(0, 3)]
-
-        # resize_ratio = 500 / image.shape[0]
 
         resize_ratio = 1
 
