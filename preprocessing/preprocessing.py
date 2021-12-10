@@ -105,7 +105,7 @@ def preprocessing(image, resize_ratio):
     rectKernel2 = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
     dilated = cv2.dilate(erosion, rectKernel)
     # plot_gray(dilated)
-
+    
     opening = cv2.morphologyEx(dilated, cv2.MORPH_OPEN, rectKernel2)
     closing = cv2.morphologyEx(dilated, cv2.MORPH_CLOSE, rectKernel2)
 
@@ -137,7 +137,7 @@ def preprocessing(image, resize_ratio):
     # plt.figure(figsize=(16, 10))
     # plt.imshow(scanned)
     if (scanned.shape[0] < scanned.shape[1]):
-        scanned = scanned_cw = np.rot90(scanned)
+        scanned_cw = np.rot90(scanned)
         scanned_ctcw = np.rot90(scanned, 3)
         scanned = np.hstack((scanned_cw, scanned_ctcw)) 
 
