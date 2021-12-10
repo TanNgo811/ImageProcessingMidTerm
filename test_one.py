@@ -1,5 +1,5 @@
 import os
-from ocr import ocr
+from ocr import FinalOCR
 import time
 import shutil
 import numpy as np
@@ -7,9 +7,11 @@ from PIL import Image
 from glob import glob
 import cv2
 
+ocr = FinalOCR()
+
 def single_pic_proc(image_file):
     image = np.array(Image.open(image_file).convert('RGB'))
-    result, image_framed = ocr(image)
+    result, image_framed = ocr.ocr(image)
     return result,image_framed
 
 def dis(image):
@@ -21,7 +23,7 @@ if __name__ == '__main__':
     import sys
     if len(sys.argv)>=2:
         filename = sys.argv[1]
-        if filename.endswith('jpg') or filename.endswith('png'):
+        if filename.endswith('jpg') or filename.endswith('png') or filename.endswith('jpeg'):
             result, image_framed = single_pic_proc(filename)
             # print(result)
             for key in result:
