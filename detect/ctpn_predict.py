@@ -29,7 +29,7 @@ class PytorchDetect():
         self.model.eval()
 
     def get_det_boxes(self, image, display = True, expand = True):
-        # image = resize(image, height=height)
+        # image = resize(image, height=720)
         image_r = image.copy()
         image_c = image.copy()
         h, w = image.shape[:2]

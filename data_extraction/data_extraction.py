@@ -7,19 +7,23 @@ def data_extraction(input_data):
 
     highland_regex_2 = '(R|r)(|.)(e|E)(|.)(c|C)(|.)(E|e)(|.)(i|I)(|.)(P|p)(|.)(t|T)'
 
+    highland_regex_3 = '(C|c)(|.)(o|O)(|.)(f|F)(|.)(F|f)(|.)(e|E)(|.)(E|e)'
+
     phuclong_regex = '(P|p)(|.)(h|H)(|.)(u|U)(|.)(C|c)(|.)(L|l)(|.)(O|o)(|.)(n|N)(|.)(g|G)'
 
     starbucks_regex = '(S|s)(|.)(t|T)(|.)(A|a)(|.)(r|R)(|.)(B|b)(|.)(u|U)(|.)(C|c)(|.)(K|k)(|.)(s|S)'
 
     starbucks_regex_2 = '(W|w)(|.{1,2})(i|I)(|.{1,2})(F|f)(|.{1,2})(i|I)'
 
+    starbucks_regex_3 = '(F|f)(|.{1,2})(r|R)(|.{1,2})(e|E)(|.{1,2})(e|E)'
+
     circlek_regex = '((C|c)(|.)(I|i)(|.)(R|r)(|.)(C|c)(|.)(L|l)(|.)(E|e)(|.)(k|K))'
 
-    if (re.search(highland_regex, input_data) or re.search(highland_regex_2, input_data)):
+    if (re.search(highland_regex, input_data) or re.search(highland_regex_2, input_data) or re.search(highland_regex_3, input_data)):
         return 'highlands'
     elif (re.search(phuclong_regex, input_data)):
         return 'phuclong'
-    elif (re.search(starbucks_regex, input_data) or re.search(starbucks_regex_2, input_data)):
+    elif (re.search(starbucks_regex, input_data) or re.search(starbucks_regex_2, input_data) or re.search(starbucks_regex_3, input_data)):
         return 'starbucks'
     else:
         return 'others'

@@ -2,10 +2,12 @@ import cv2
 from preprocessing import preprocessing
 from ocr import FinalOCR
 from data_extraction import data_extraction
+import time
 
 if __name__ == '__main__':
-    file_name = './test_images/img4.jpeg'
+    file_name = './test_images/img6.jpeg'
     image = cv2.imread(file_name)
+    start_time = time.time()
 
     # resize_ratio = 500 / image.shape[1]
     myocr = FinalOCR()
@@ -28,5 +30,10 @@ if __name__ == '__main__':
         
     print(data_extraction.data_extraction(data))
 
+    run_time = time.time() - start_time
+
+    print("Run time: ", run_time)
+
     cv2.imshow('abc', image_framed)
     cv2.waitKey()
+

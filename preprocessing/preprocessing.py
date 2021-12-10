@@ -1,9 +1,7 @@
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-import math
-from skimage.filters import threshold_local
-from PIL import Image
+
 
 def opencv_resize(image, ratio):
     width = int(image.shape[1] * ratio)
@@ -73,10 +71,10 @@ def wrap_perspective(img, rect):
     # warp the perspective to grab the screen
     return cv2.warpPerspective(img, M, (maxWidth, maxHeight))
 
-def bw_scanner(image):
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    T = threshold_local(gray, 21, offset = 5, method = "gaussian")
-    return (gray > T).astype("uint8") * 255
+# def bw_scanner(image):
+#     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+#     T = threshold_local(gray, 21, offset = 5, method = "gaussian")
+#     return (gray > T).astype("uint8") * 255
 
 def preprocessing(image, resize_ratio):
 
@@ -85,6 +83,8 @@ def preprocessing(image, resize_ratio):
     image = opencv_resize(image, resize_ratio)
 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    gray = cv2.equalizeHist(gray)
     # plot_gray(gray)
 
     # Get rid of noise with Gaussian Blur filter
