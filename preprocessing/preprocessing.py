@@ -105,7 +105,7 @@ def preprocessing(image, resize_ratio):
     rectKernel2 = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
     dilated = cv2.dilate(erosion, rectKernel)
     # plot_gray(dilated)
-
+    
     opening = cv2.morphologyEx(dilated, cv2.MORPH_OPEN, rectKernel2)
     closing = cv2.morphologyEx(dilated, cv2.MORPH_CLOSE, rectKernel2)
 
@@ -136,6 +136,10 @@ def preprocessing(image, resize_ratio):
     scanned = wrap_perspective(original.copy(), contour_to_rect(receipt_contour, resize_ratio))
     # plt.figure(figsize=(16, 10))
     # plt.imshow(scanned)
+    if (scanned.shape[0] < scanned.shape[1]):
+        scanned_cw = np.rot90(scanned)
+        scanned_ctcw = np.rot90(scanned, 3)
+        scanned = np.hstack((scanned_cw, scanned_ctcw)) 
 
     # result = bw_scanner(scanned)
 
@@ -145,12 +149,16 @@ def preprocessing(image, resize_ratio):
 if __name__ == '__main__':
     file_name = '../test_images/img4.jpeg'
     image = cv2.imread(file_name)
-
-    resize_ratio = 500 / image.shape[0]
+    if (image is not None):
+        print('IMG Read!')
+    else:
+        print('IMG not Read!')
+    # resize_ratio = 500 / image.shape[0]
+    resize_ratio =1
 
     result = preprocessing(image, resize_ratio)
 
-    print(result)
+    # print(result)
 
     cv2.imshow('abc', result)
-    cv2.waitKey()
+    cv2.waitKey(0)
